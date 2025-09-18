@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  socketio-server:
+    build: .
+    container_name: socketio_server
+    ports:
+      - " :3000"
+    restart: unless-stopped
+    networks:
+      - wintext_network
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true
+
+networks:
+  wintext_network:
+    external: true
