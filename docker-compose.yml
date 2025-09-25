@@ -9,8 +9,12 @@ services:
     restart: unless-stopped
     networks:
       - wintext_network
-    command: node server.js
+    command: sh -c "npm install && node server.js"
 
+    # command: node server.js   # Not necessary if CMD is in Dockerfile
+    volumes:
+      - ./src:/app
+      - /app/node_modules
 networks:
   wintext_network:
     external: true
