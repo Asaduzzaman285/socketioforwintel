@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 
 services:
   socketio-server:
@@ -9,12 +9,12 @@ services:
     restart: unless-stopped
     networks:
       - wintext_network
-    command: sh -c "npm install && node server.js"
-
-    # command: node server.js   # Not necessary if CMD is in Dockerfile
     volumes:
-      - ./src:/app
-      - /app/node_modules
+      - .:/app
+      - /app/node_modules   # <-- ensures container keeps its own node_modules
+    # If CMD is in Dockerfile, you don’t need this line:
+    # command: node server.js
+
 networks:
   wintext_network:
     external: true
